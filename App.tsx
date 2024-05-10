@@ -12,7 +12,7 @@ import {Text} from './src/components/Text/Text';
 function App(): JSX.Element {
   return (
     <SafeAreaView>
-      <Text preset="headingLarge" style={{fontFamily: 'Satoshi-Regular'}}>
+      <Text preset="headingLarge" style={{fontFamily: 'Satoshi-Black'}}>
         Coffstack
       </Text>
     </SafeAreaView>
