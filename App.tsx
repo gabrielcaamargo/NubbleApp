@@ -20,10 +20,8 @@ function App(): JSX.Element {
           <Text preset="headingMedium" italic>
             Coffstack
           </Text>
-          <Button title="Coffstack" />
-          <Button title="Coffstack" mt="s8" preset="outline" loading />
-          <Button title="Coffstack" mt="s8" preset="secondary" />
-          <Button title="Coffstack" mt="s8" loading preset="secondary" />
+          <Button title="Coffstack" loading />
+          <Button title="Coffstack" mt="s8" preset="outline" loading disabled />
         </View>
       </SafeAreaView>
     </ThemeProvider>
