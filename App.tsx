@@ -10,7 +10,7 @@ import {SafeAreaView, View} from 'react-native';
 import {Text} from './src/components/Text/Text';
 import {ThemeProvider} from '@shopify/restyle';
 import {theme} from './src/theme/theme';
-import {Button} from './src/components/Button/Button';
+import {Icon} from './src/assets/icons/Icon';
 
 function App(): JSX.Element {
   return (
@@ -20,8 +20,9 @@ function App(): JSX.Element {
           <Text preset="headingMedium" italic>
             Coffstack
           </Text>
-          <Button title="Coffstack" loading />
-          <Button title="Coffstack" mt="s8" preset="outline" loading disabled />
+
+          <Icon name="eyeOn" />
+          <Icon name="eyeOff" />
         </View>
       </SafeAreaView>
     </ThemeProvider>
