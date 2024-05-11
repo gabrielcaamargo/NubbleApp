@@ -11,6 +11,7 @@ import {Text} from './src/components/Text/Text';
 import {ThemeProvider} from '@shopify/restyle';
 import {theme} from './src/theme/theme';
 import {Button} from './src/components/Button/Button';
+import {Box} from './src/components/Box/Box';
 
 function App(): JSX.Element {
   return (
@@ -20,7 +21,10 @@ function App(): JSX.Element {
           <Text preset="headingMedium" italic>
             Coffstack
           </Text>
-          <Button title="Coffstack" />
+          <Box marginBottom="s24">
+            <Button title="Coffstack" />
+          </Box>
+          <Button title="Coffstack" loading />
         </View>
       </SafeAreaView>
     </ThemeProvider>

@@ -1,27 +1,29 @@
 import React from 'react';
-import {useTheme} from '@shopify/restyle';
-import {TouchableOpacity} from 'react-native';
 import {Text} from '../Text/Text';
-import {Theme} from '../../theme/theme';
+import {TouchableOpacityBox} from '../Box/Box';
+import {ActivityIndicator} from 'react-native';
 
 interface ButtonProps {
   title: string;
+  loading?: boolean;
 }
 
-export function Button({title}: ButtonProps) {
-  const {colors} = useTheme<Theme>();
+export function Button({title, loading}: ButtonProps) {
   return (
-    <TouchableOpacity
-      style={{
-        backgroundColor: colors.greenPrimary,
-        paddingHorizontal: 20,
-        paddingVertical: 14,
-        alignItems: 'center',
-        borderRadius: 16,
-      }}>
-      <Text preset="paragraphMedium" bold style={{color: colors.grayWhite}}>
-        {title}
-      </Text>
-    </TouchableOpacity>
+    <TouchableOpacityBox
+      backgroundColor="buttonPrimary"
+      paddingHorizontal="s20"
+      height={50}
+      justifyContent="center"
+      alignItems="center"
+      borderRadius="s16">
+      {loading ? (
+        <ActivityIndicator />
+      ) : (
+        <Text preset="paragraphMedium" bold style={{color: '#FFF'}}>
+          {title}
+        </Text>
+      )}
+    </TouchableOpacityBox>
   );
 }
