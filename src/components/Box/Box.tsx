@@ -23,7 +23,7 @@ export type TouchableOpacityBoxProps = BackgroundColorProps<Theme> &
   TouchableOpacityProps;
 
 export const Box = createBox<Theme>();
-
+export type BoxProps = React.ComponentProps<typeof Box>;
 export const TouchableOpacityBox = createRestyleComponent<
   TouchableOpacityBoxProps,
   Theme
