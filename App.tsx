@@ -20,15 +20,18 @@ function App(): JSX.Element {
             Digite seu e-mail e senha para entrar
           </Text>
 
-          <Box marginBottom="s20">
-            <TextInput placeholder="Digite seu e-mail" label="Email" />
-          </Box>
+          <TextInput
+            placeholder="Digite seu e-mail"
+            label="Email"
+            boxProps={{marginBottom: 's20'}}
+          />
           <TextInput
             placeholder="Digite sua senha"
             label="Senha"
             RightComponent={<Icon color="gray2" name="eyeOn" />}
+            boxProps={{marginBottom: 's10'}}
           />
-          <Text preset="paragraphSmall" bold color="primary" marginTop="s10">
+          <Text preset="paragraphSmall" bold color="primary">
             Esqueci minha senha
           </Text>
 
