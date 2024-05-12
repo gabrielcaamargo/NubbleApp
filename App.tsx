@@ -20,7 +20,11 @@ function App(): JSX.Element {
           </Text>
 
           <Box marginBottom="s20">
-            <TextInput placeholder="Digite seu e-mail" label="Email" />
+            <TextInput
+              placeholder="Digite seu e-mail"
+              label="Email"
+              errorMessage="Email inválido"
+            />
           </Box>
           <TextInput placeholder="Digite sua senha" label="Senha" />
           <Text preset="paragraphSmall" bold color="primary" marginTop="s10">
