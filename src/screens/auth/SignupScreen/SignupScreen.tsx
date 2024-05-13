@@ -7,11 +7,10 @@ import {Box} from '../../../components/Box/Box';
 import {Icon} from '../../../components/Icon/Icon';
 
 export function SignupScreen() {
-  // TODO
   function submitForm() {}
 
   return (
-    <Screen canGoBack>
+    <Screen canGoBack scrollable>
       <Text preset="headingLarge" marginBottom="s32">
         Criar uma conta
       </Text>

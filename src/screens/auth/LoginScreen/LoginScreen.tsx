@@ -20,6 +20,7 @@ export function LoginScreen() {
         label="Email"
         boxProps={{marginBottom: 's20'}}
       />
+
       <TextInput
         placeholder="Digite sua senha"
         label="Senha"
