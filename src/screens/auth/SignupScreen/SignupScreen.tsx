@@ -4,7 +4,7 @@ import {Text} from '../../../components/Text/Text';
 import {TextInput} from '../../../components/TextInput/TextInput';
 import {Button} from '../../../components/Button/Button';
 import {Box} from '../../../components/Box/Box';
-import {Icon} from '../../../components/Icon/Icon';
+import {PasswordInput} from '../../../components/PasswordInput/PasswordInput';
 
 export function SignupScreen() {
   function submitForm() {}
@@ -19,11 +19,7 @@ export function SignupScreen() {
         <TextInput label="Seu username" placeholder="@" />
         <TextInput label="Nome completo" placeholder="Seu nome completo" />
         <TextInput label="Email" placeholder="Seu email" />
-        <TextInput
-          label="Senha"
-          placeholder="Sua senha"
-          RightComponent={<Icon color="gray2" name="eyeOn" />}
-        />
+        <PasswordInput label="Senha" placeholder="Sua senha" />
       </Box>
       <Button title="Criar minha conta" marginTop="s48" onPress={submitForm} />
     </Screen>
