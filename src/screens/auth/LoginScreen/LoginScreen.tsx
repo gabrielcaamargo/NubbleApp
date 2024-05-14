@@ -5,7 +5,11 @@ import {Icon} from '../../../components/Icon/Icon';
 import {Button} from '../../../components/Button/Button';
 import {Screen} from '../../../components/Screen/Screen';
 
-export function LoginScreen() {
+export function LoginScreen({navigation}) {
+  function navigateToSignupScreen() {
+    navigation.navigate('SignupScreen');
+  }
+
   return (
     <Screen>
       <Text preset="headingLarge" marginBottom="s8">
@@ -32,7 +36,12 @@ export function LoginScreen() {
       </Text>
 
       <Button title="Entrar" marginTop="s48" />
-      <Button title="Criar uma conta" marginTop="s12" preset="outline" />
+      <Button
+        onPress={navigateToSignupScreen}
+        title="Criar uma conta"
+        marginTop="s12"
+        preset="outline"
+      />
     </Screen>
   );
 }

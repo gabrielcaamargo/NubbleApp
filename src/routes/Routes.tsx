@@ -12,7 +12,7 @@ export function Routes() {
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName="LoginScreen"
-        screenOptions={{headerShown: false}}>
+        screenOptions={{headerShown: false, fullScreenGestureEnabled: true}}>
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="SignupScreen" component={SignupScreen} />
       </Stack.Navigator>
