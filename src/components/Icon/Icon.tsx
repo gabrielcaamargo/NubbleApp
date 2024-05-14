@@ -29,13 +29,15 @@ import {TrashIcon} from '../../assets/icons/TrashIcon';
 import {useAppTheme} from '../../hooks/useAppTheme';
 import {ThemeColors} from '../../theme/theme';
 import {Pressable} from 'react-native';
+import {CheckRoundIcon} from '../../assets/icons/CheckRound';
+import {MessageRoundIcon} from '../../assets/icons/MessageRoundIcon';
 
 export interface IconBase {
   size?: number;
   color?: string;
 }
 
-interface IIconProps {
+export interface IIconProps {
   name: IconName;
   color?: ThemeColors;
   size?: number;
@@ -71,8 +73,9 @@ const iconRegistry = {
   camera: CameraIcon,
   chat: ChatIcon,
   chatOn: ChatOnIcon,
-  check: CheckIcon,
+  checkRound: CheckRoundIcon,
   comment: CommentIcon,
+  checkIcon: CheckIcon,
   chevronRight: ChevronRightIcon,
   eyeOn: EyeOnIcon,
   eyeOff: EyeOffIcon,
@@ -83,6 +86,7 @@ const iconRegistry = {
   home: HomeIcon,
   homeFill: HomeFillIcon,
   message: MessageIcon,
+  messageRound: MessageRoundIcon,
   newPost: NewPostIcon,
   profile: ProfileIcon,
   profileFill: ProfileFillIcon,
