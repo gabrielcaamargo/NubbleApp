@@ -8,7 +8,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../../routes/Routes';
 import {PasswordInput} from '../../../components/PasswordInput/PasswordInput';
 
-type LoginForm = {
+type LoginFormType = {
   email: string;
   password: string;
 };
@@ -16,7 +16,7 @@ type LoginForm = {
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
 
 export function LoginScreen({navigation}: ScreenProps) {
-  const {control, formState, handleSubmit} = useForm<LoginForm>({
+  const {control, formState, handleSubmit} = useForm<LoginFormType>({
     defaultValues: {
       email: '',
       password: '',
@@ -25,7 +25,7 @@ export function LoginScreen({navigation}: ScreenProps) {
     delayError: 500,
   });
 
-  function submitForm(event: LoginForm) {
+  function submitForm(event: LoginFormType) {
     console.log(event);
   }
 
