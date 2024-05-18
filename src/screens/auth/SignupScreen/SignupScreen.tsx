@@ -7,8 +7,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../../routes/Routes';
 // import {useResetNavigationSuccess} from '../../../hooks/useResetNavigationSuccess';
 import {useForm} from 'react-hook-form';
-import {FormTextInput} from '../../../components/form/FormTextInput/FormTextInput';
-import {FormPasswordInput} from '../../../components/form/FormPasswordInput/FormPasswordInput';
+import {FormTextInput, FormPasswordInput} from '@components';
 import {SignupSchema, signupSchema} from './signupSchema';
 import {zodResolver} from '@hookform/resolvers/zod';
 
