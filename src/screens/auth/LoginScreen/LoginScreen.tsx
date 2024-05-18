@@ -1,22 +1,20 @@
 import React from 'react';
-import {useForm, Controller} from 'react-hook-form';
+import {useForm} from 'react-hook-form';
 import {Text} from '../../../components/Text/Text';
 import {Button} from '../../../components/Button/Button';
 import {Screen} from '../../../components/Screen/Screen';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../../routes/Routes';
-import {PasswordInput} from '../../../components/PasswordInput/PasswordInput';
 import {FormTextInput} from '../../../components/form/FormTextInput/FormTextInput';
-
-type LoginFormType = {
-  email: string;
-  password: string;
-};
+import {zodResolver} from '@hookform/resolvers/zod';
+import {loginSchema, LoginSchema} from './loginSchema';
+import {FormPasswordInput} from '../../../components/form/FormPasswordInput/FormPasswordInput';
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
 
 export function LoginScreen({navigation}: ScreenProps) {
-  const {control, formState, handleSubmit} = useForm<LoginFormType>({
+  const {control, formState, handleSubmit} = useForm<LoginSchema>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: '',
       password: '',
@@ -25,7 +23,7 @@ export function LoginScreen({navigation}: ScreenProps) {
     delayError: 500,
   });
 
-  function submitForm(event: LoginFormType) {
+  function submitForm(event: LoginSchema) {
     console.log(event);
   }
 
@@ -49,38 +47,16 @@ export function LoginScreen({navigation}: ScreenProps) {
       <FormTextInput
         control={control}
         name="email"
-        rules={{
-          required: 'E-mail obrigatório',
-          pattern: {
-            value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-            message: 'E-mail inválido',
-          },
-        }}
         placeholder="Digite seu e-mail"
         label="Email"
         boxProps={{marginBottom: 's20'}}
       />
 
-      <Controller
+      <FormPasswordInput
         control={control}
         name="password"
-        rules={{
-          required: 'Senha obrigtatória',
-          minLength: {
-            value: 8,
-            message: 'A senha deve ter no mínimo 8 caracteres',
-          },
-        }}
-        render={({field, fieldState}) => (
-          <PasswordInput
-            errorMessage={fieldState.error?.message}
-            value={field.value}
-            onChangeText={field.onChange}
-            label="Senha"
-            placeholder="Digita sua senha"
-            boxProps={{marginBottom: 's20'}}
-          />
-        )}
+        label="Senha"
+        placeholder="Digite sua senha"
       />
 
       <Text
