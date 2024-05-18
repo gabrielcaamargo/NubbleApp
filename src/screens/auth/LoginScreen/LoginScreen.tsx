@@ -1,12 +1,12 @@
 import React from 'react';
 import {useForm, Controller} from 'react-hook-form';
 import {Text} from '../../../components/Text/Text';
-import {TextInput} from '../../../components/TextInput/TextInput';
 import {Button} from '../../../components/Button/Button';
 import {Screen} from '../../../components/Screen/Screen';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../../routes/Routes';
 import {PasswordInput} from '../../../components/PasswordInput/PasswordInput';
+import {FormTextInput} from '../../../components/form/FormTextInput/FormTextInput';
 
 type LoginFormType = {
   email: string;
@@ -46,7 +46,7 @@ export function LoginScreen({navigation}: ScreenProps) {
         Digite seu e-mail e senha para entrar
       </Text>
 
-      <Controller
+      <FormTextInput
         control={control}
         name="email"
         rules={{
@@ -56,16 +56,9 @@ export function LoginScreen({navigation}: ScreenProps) {
             message: 'E-mail inválido',
           },
         }}
-        render={({field, fieldState}) => (
-          <TextInput
-            placeholder="Digite seu e-mail"
-            label="Email"
-            boxProps={{marginBottom: 's20'}}
-            value={field.value}
-            onChangeText={field.onChange}
-            errorMessage={fieldState.error?.message}
-          />
-        )}
+        placeholder="Digite seu e-mail"
+        label="Email"
+        boxProps={{marginBottom: 's20'}}
       />
 
       <Controller

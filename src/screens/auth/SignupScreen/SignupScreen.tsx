@@ -8,6 +8,7 @@ import {RootStackParamList} from '../../../routes/Routes';
 // import {useResetNavigationSuccess} from '../../../hooks/useResetNavigationSuccess';
 import {useForm} from 'react-hook-form';
 import {FormTextInput} from '../../../components/form/FormTextInput/FormTextInput';
+import {FormPasswordInput} from '../../../components/form/FormPasswordInput/FormPasswordInput';
 
 type SignupFormType = {
   username: string;
@@ -87,7 +88,7 @@ export function SignupScreen({}: ScreenProps) {
           }}
         />
 
-        <FormTextInput
+        <FormPasswordInput
           control={control}
           name="password"
           label="Senha"
