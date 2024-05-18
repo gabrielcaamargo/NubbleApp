@@ -1,8 +1,6 @@
 import React from 'react';
-import {Box, TouchableOpacityBox} from '../Box/Box';
 import {useAppSafeArea} from '../../hooks/useAppSafeArea';
-import {Icon} from '../Icon/Icon';
-import {Text} from '../Text/Text';
+import {Icon, Text, Box, TouchableOpacityBox} from '@components';
 import {
   KeyboardAvoidingView,
   Platform,
