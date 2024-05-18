@@ -6,9 +6,11 @@ import {
   StyleProp,
   TextStyle,
 } from 'react-native';
-import {$fontFamily, $fontSizes, Text} from '../Text/Text';
-import {Box, BoxProps} from '../Box/Box';
+
 import {useAppTheme} from '@hooks';
+
+import {Box, BoxProps} from '../Box/Box';
+import {$fontFamily, $fontSizes, Text} from '../Text/Text';
 
 export interface ITextInputProps extends RNTextInputProps {
   label: string;
@@ -26,7 +28,6 @@ export function TextInput({
 }: ITextInputProps) {
   const {colors} = useAppTheme();
   const inputRef = useRef<RNTextInput>(null);
-
   const $textInputContainer: BoxProps = {
     flexDirection: 'row',
     alignItems: 'center',

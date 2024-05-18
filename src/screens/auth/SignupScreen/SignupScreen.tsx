@@ -1,20 +1,20 @@
 import React from 'react';
-import {Screen} from '../../../components/Screen/Screen';
-import {Text} from '../../../components/Text/Text';
-import {Button} from '../../../components/Button/Button';
-import {Box} from '../../../components/Box/Box';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../../../routes/Routes';
-// import {useResetNavigationSuccess} from '../../../hooks/useResetNavigationSuccess';
-import {useForm} from 'react-hook-form';
-import {FormTextInput, FormPasswordInput} from '@components';
-import {SignupSchema, signupSchema} from './signupSchema';
+
 import {zodResolver} from '@hookform/resolvers/zod';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {useForm} from 'react-hook-form';
+
+import {FormTextInput, FormPasswordInput} from '@components';
+import {Box, Button, Screen, Text} from '@components';
+import {useResetNavigationSuccess} from '@hooks';
+import {RootStackParamList} from '@routes';
+
+import {SignupSchema, signupSchema} from './signupSchema';
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'SignupScreen'>;
 
 export function SignupScreen({}: ScreenProps) {
-  // const {reset} = useResetNavigationSuccess();
+  const {reset} = useResetNavigationSuccess();
   const {control, formState, handleSubmit} = useForm<SignupSchema>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
@@ -27,15 +27,14 @@ export function SignupScreen({}: ScreenProps) {
   });
 
   function submitForm(signupValues: SignupSchema) {
-    console.log(signupValues);
-    // reset({
-    //   title: 'Sua conta foi criada com sucesso!',
-    //   description: 'Agora é só fazer login na nossa plataforma',
-    //   icon: {
-    //     name: 'checkRound',
-    //     color: 'success',
-    //   },
-    // });
+    reset({
+      title: 'Sua conta foi criada com sucesso!',
+      description: 'Agora é só fazer login na nossa plataforma',
+      icon: {
+        name: 'checkRound',
+        color: 'success',
+      },
+    });
   }
 
   return (

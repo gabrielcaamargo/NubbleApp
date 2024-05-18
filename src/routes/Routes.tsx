@@ -2,12 +2,14 @@ import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
 import {
   LoginScreen,
   SignupScreen,
   ForgotPasswordScreen,
   SuccessScreen,
 } from '@screens';
+
 import {IIconProps} from '../components/Icon/Icon';
 
 export type RootStackParamList = {
