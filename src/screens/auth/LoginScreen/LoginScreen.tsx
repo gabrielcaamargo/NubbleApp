@@ -68,7 +68,8 @@ export function LoginScreen({navigation}: ScreenProps) {
         preset="paragraphSmall"
         bold
         color="primary"
-        onPress={navigateToForgotPasswordScreen}>
+        onPress={navigateToForgotPasswordScreen}
+        marginTop="s8">
         Esqueci minha senha
       </Text>
 
