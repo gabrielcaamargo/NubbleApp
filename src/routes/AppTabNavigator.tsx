@@ -1,15 +1,19 @@
 import React from 'react';
 
-import {BottomTabBarProps, createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {
+  BottomTabBarProps,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
 
+import {Icon, Text} from '@components';
 import {
   FavoriteScreen,
   HomeScreen,
   MyProfileScreen,
   NewPostScreen,
 } from '@screens';
-import { Icon, Text } from '@components';
-import { AppTabBar } from './AppTabBar';
+
+import {AppTabBar} from './AppTabBar';
 
 export type AppTabBottomTabParamList = {
   HomeScreen: undefined;
@@ -21,16 +25,32 @@ export type AppTabBottomTabParamList = {
 const Tab = createBottomTabNavigator<AppTabBottomTabParamList>();
 
 function renderTabBar(props: BottomTabBarProps) {
-  return <AppTabBar {...props} />
+  return <AppTabBar {...props} />;
 }
 
 export function AppTabNavigator() {
   return (
     <Tab.Navigator screenOptions={{headerShown: false}} tabBar={renderTabBar}>
-      <Tab.Screen name="HomeScreen" component={HomeScreen} options={{
-        tabBarLabel: ({focused}) => <Text semiBold preset='paragraphCaption' color={focused ? 'primary' : 'backgroundContrast'}>Início</Text>,
-        tabBarIcon: ({focused}) => <Icon name={focused ? 'homeFill' : 'home'} color={focused ? 'primary' : 'backgroundContrast'}/>
-      }} />
+      <Tab.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{
+          tabBarLabel: ({focused}) => (
+            <Text
+              semiBold
+              preset="paragraphCaption"
+              color={focused ? 'primary' : 'backgroundContrast'}>
+              Início
+            </Text>
+          ),
+          tabBarIcon: ({focused}) => (
+            <Icon
+              name={focused ? 'homeFill' : 'home'}
+              color={focused ? 'primary' : 'backgroundContrast'}
+            />
+          ),
+        }}
+      />
       <Tab.Screen name="NewPostScreen" component={NewPostScreen} />
       <Tab.Screen name="FavoriteScreen" component={FavoriteScreen} />
       <Tab.Screen name="MyProfileScreen" component={MyProfileScreen} />
