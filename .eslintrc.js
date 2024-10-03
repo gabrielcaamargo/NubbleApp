@@ -33,13 +33,11 @@ module.exports = {
               caseInsensitive: true,
             },
             'newlines-between': 'always',
+            '@typescript-eslint/no-unused-vars': 'warn',
+    'react-native/no-inline-styles': 'off',
           },
         ],
       },
     },
   ],
-  rules: {
-    '@typescript-eslint/no-unused-vars': 'warn',
-    'react-native/no-inline-styles': 'off',
-  },
 };
