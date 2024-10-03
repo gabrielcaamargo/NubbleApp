@@ -1,6 +1,6 @@
 import React from 'react';
-import {Box, Icon, IconProps, Text, TouchableOpacityBox} from '@components';
 import {Post} from '@domain';
+import {Box, Icon, IconProps, Text, TouchableOpacityBox} from '@components';
 
 type PostActionsProps = Pick<
   Post,
