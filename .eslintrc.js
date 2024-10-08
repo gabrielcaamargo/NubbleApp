@@ -37,6 +37,12 @@ module.exports = {
         '@typescript-eslint/no-unused-vars': 'warn',
         'react-native/no-inline-styles': 'off',
         'linebreak-style': 'off',
+        'prettier/prettier': [
+          'error',
+          {
+            endOfLine: 'auto',
+          },
+        ],
       },
     },
   ],
