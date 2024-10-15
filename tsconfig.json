@@ -21,6 +21,9 @@
       "@theme": [
         "src/theme"
       ],
+      "@brand": [
+        "src/brand"
+      ],
     }
   }
 }
