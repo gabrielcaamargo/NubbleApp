@@ -2,11 +2,11 @@ import {PageAPI} from '@api';
 import {PostAPI} from './postTypes';
 
 async function getList(): Promise<PageAPI<PostAPI>> {
-  const response = await fetch('http://localhost:3333/user/post', {
+  const response = await fetch('http://127.0.0.1:3333/user/post', {
     method: 'GET',
     headers: {
       Authorization:
-        'Bearer MQ.lVlnp7yACJFTA-q7v1-7pgivO6GgBLFflOBnzszNCegpEsRut-JTVkQQAdrt',
+        'Bearer MQ.CUNmFrIXzyMqy88POemzVSTKj4n2NH65_IWXa5q0un1xja2fonUI6Zhrv4pC',
     },
   });
 
