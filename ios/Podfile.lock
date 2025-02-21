@@ -424,7 +424,7 @@ PODS:
     - React-RCTImage
   - RNSVG (13.9.0):
     - React-Core
-  - SocketRocket (0.6.0)
+  - SocketRocket (0.6.1)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -637,10 +637,10 @@ SPEC CHECKSUMS:
   ReactCommon: 275d65c190ade0b51c713c277ba52c9c78b3d914
   RNScreens: c6ae949c292bee8ed7f355ab2adcfc9a51629951
   RNSVG: 67c430ac7a54043cac37f6bd7bc94f8e22d8a64a
-  SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
+  SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 065f0b74dba4832d6e328238de46eb72c5de9556
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: b03e55c075f548a48e20f6ae8f672faf1cb69411
+PODFILE CHECKSUM: dbc300137a70b581665742b8cd8462b0f31aa160
 
 COCOAPODS: 1.16.2

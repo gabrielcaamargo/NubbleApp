@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {
   FlatList,
   ListRenderItemInfo,
@@ -19,7 +19,7 @@ import {HomeHeader} from './components/HomeHeader';
 export function HomeScreen({}: AppTabScreenProps<'HomeScreen'>) {
   const {postList, error, loading, refresh, fetchNextPage} = usePostList();
 
-  const flatListRef = React.useRef<FlatList<Post>>(null);
+  const flatListRef = useRef<FlatList<Post>>(null);
   useScrollToTop(flatListRef);
 
   function renderItem({item}: ListRenderItemInfo<Post>) {
