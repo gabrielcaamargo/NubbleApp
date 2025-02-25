@@ -56,7 +56,7 @@ export function usePaginatedList<Data>(
   }, []);
 
   return {
-    postList: list,
+    list,
     error,
     loading,
     refresh: fetchInitialData,
