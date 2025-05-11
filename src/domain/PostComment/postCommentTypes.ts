@@ -2,6 +2,7 @@ export interface PostComment {
   id: number;
   message: string;
   createdAt: string;
+  createdAtRelative: string; // '1h, 2sem'
   author: {
     id: number;
     profileURL: string;
