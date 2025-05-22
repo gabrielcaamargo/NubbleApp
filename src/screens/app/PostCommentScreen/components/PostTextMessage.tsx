@@ -7,10 +7,17 @@ import {TextMessage} from '@components';
 
 interface PostTextMessageProps {
   postId: number;
+  onAddComment: () => {};
 }
 
-export function PostTextMessage({postId}: PostTextMessageProps) {
-  const {createComment} = usePostCommentCreate(postId);
+export function PostTextMessage({postId, onAddComment}: PostTextMessageProps) {
+  const {createComment} = usePostCommentCreate(postId, {
+    onSucess: () => {
+      setMessage('');
+      Keyboard.dismiss();
+      onAddComment();
+    },
+  });
   const [message, setMessage] = useState<string>('');
 
   async function onPressSend() {
