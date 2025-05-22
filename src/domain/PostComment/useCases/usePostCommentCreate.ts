@@ -5,11 +5,11 @@ import {PostComment} from '../postCommentTypes';
 
 export function usePostCommentCreate(
   postId: number,
-  mutationOptions?: MutationOptions<PostComment>,
+  options?: MutationOptions<PostComment>,
 ) {
   const {mutate, loading, error} = useMutation<{message: string}, PostComment>(
     ({message}) => postCommentService.create(postId, message),
-    mutationOptions,
+    options,
   );
 
   async function createComment(message: string) {
