@@ -7,7 +7,7 @@ import {TextMessage} from '@components';
 
 interface PostTextMessageProps {
   postId: number;
-  onAddComment: () => {};
+  onAddComment: () => void;
 }
 
 export function PostTextMessage({postId, onAddComment}: PostTextMessageProps) {
