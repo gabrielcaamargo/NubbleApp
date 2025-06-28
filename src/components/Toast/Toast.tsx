@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Dimensions} from 'react-native';
+
+import {useToast} from '@service';
 
 import {$shadowProps} from '@theme';
 
@@ -8,11 +10,29 @@ import {Icon} from '../Icon/Icon';
 import {Text} from '../Text/Text';
 
 export function Toast() {
+  const {toast, hideToast} = useToast();
+
+  useEffect(() => {
+    if (toast) {
+      const toastTimeout = setTimeout(() => {
+        hideToast();
+      }, toast.duration || 2000);
+
+      return () => {
+        clearTimeout(toastTimeout);
+      };
+    }
+  }, [toast, hideToast]);
+
+  if (!toast) {
+    return null;
+  }
+
   return (
     <Box top={100} {...$boxStyle}>
       <Icon color="success" name="checkRound" />
       <Text style={{flexShrink: 1}} preset="paragraphMedium" bold>
-        Toast
+        {toast.message}
       </Text>
     </Box>
   );
