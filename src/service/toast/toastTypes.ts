@@ -2,6 +2,7 @@ export interface Toast {
   message: string;
   type?: 'success' | 'error';
   duration?: number;
+  position?: 'top' | 'bottom';
   action?: {
     title: string;
     onPress: () => void;
