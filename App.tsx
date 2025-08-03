@@ -4,8 +4,8 @@ if (__DEV__) {
 
 import React from 'react';
 
-import {ToastProvider} from '@service';
 import {ThemeProvider} from '@shopify/restyle';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import {Toast} from '@components';
@@ -13,16 +13,18 @@ import {Toast} from '@components';
 import {Router} from './src/routes/Routes';
 import {theme} from './src/theme/theme';
 
+const queryClient = new QueryClient();
+
 function App(): JSX.Element {
   return (
-    <SafeAreaProvider>
-      <ThemeProvider theme={theme}>
-        <ToastProvider>
+    <QueryClientProvider client={queryClient}>
+      <SafeAreaProvider>
+        <ThemeProvider theme={theme}>
           <Router />
           <Toast />
-        </ToastProvider>
-      </ThemeProvider>
-    </SafeAreaProvider>
+        </ThemeProvider>
+      </SafeAreaProvider>
+    </QueryClientProvider>
   );
 }
 
