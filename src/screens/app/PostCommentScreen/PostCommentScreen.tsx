@@ -54,7 +54,7 @@ export function PostCommentScreen({
           }
         />
 
-        <PostTextMessage postId={postId} onAddComment={refresh} />
+        <PostTextMessage postId={postId} />
       </Box>
     </Screen>
   );

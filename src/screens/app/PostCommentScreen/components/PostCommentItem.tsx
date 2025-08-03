@@ -22,7 +22,7 @@ export function PostCommentItem({
   const {showToast} = useToastService();
 
   const {mutate} = usePostCommentRemove({
-    onSucess: () => {
+    onSuccess: () => {
       onRemoveComment();
       showToast({
         message: 'Comentário excluído com sucesso!',

@@ -1,11 +1,14 @@
 import {useState} from 'react';
 
 export interface MutationOptions<TData> {
-  onSucess?: (data?: TData) => void;
+  onSuccess?: (data?: TData) => void;
   onError?: (message: string) => void;
   errorMessage?: string;
 }
 
+/**
+ * @deprecated Use `useMutation` from `@tanstack/react-query` instead.
+ */
 export function useMutation<TVariables, TData>(
   mutationFn: (variables: TVariables) => Promise<TData>,
   options?: MutationOptions<TData>,
@@ -19,8 +22,8 @@ export function useMutation<TVariables, TData>(
       setLoading(true);
       const data = await mutationFn(variables);
 
-      if (options?.onSucess) {
-        options.onSucess(data);
+      if (options?.onSuccess) {
+        options.onSuccess(data);
       }
     } catch (mutateError) {
       if (options?.onError) {
