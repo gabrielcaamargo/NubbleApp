@@ -10,23 +10,21 @@ interface PostCommentItemProps {
   postComment: PostComment;
   userId: number;
   postAuthorId: number;
-  onRemoveComment: () => void;
+  postId: number;
 }
 
 export function PostCommentItem({
   postComment,
   userId,
   postAuthorId,
-  onRemoveComment,
+  postId,
 }: PostCommentItemProps) {
   const {showToast} = useToastService();
 
-  const {mutate} = usePostCommentRemove({
+  const {mutate} = usePostCommentRemove(postId, {
     onSuccess: () => {
-      onRemoveComment();
       showToast({
         message: 'Comentário excluído com sucesso!',
-        // position: 'bottom',
       });
     },
   });
