@@ -12,7 +12,7 @@ async function signIn(
     const authCredentialsAPI = await authApi.signIn(email, password);
     return authAdapter.toAuthCredentials(authCredentialsAPI);
   } catch (error) {
-    throw new Error('email ou senha inválido');
+    throw new Error('Email ou senha inválidos');
   }
 }
 

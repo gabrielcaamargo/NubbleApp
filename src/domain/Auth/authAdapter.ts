@@ -11,4 +11,6 @@ function toAuthCredentials(
   };
 }
 
-export const authAdapter = {toAuthCredentials};
+export const authAdapter = {
+  toAuthCredentials,
+};
