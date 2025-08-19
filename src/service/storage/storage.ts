@@ -1,4 +1,4 @@
-import {asyncStorage} from './implementation/asyncStorage';
+import {MMKVStorage} from './implementation/mmkvStorage';
 
 export interface Storage {
   getItem: <T = unknown>(key: string) => Promise<T | null>;
@@ -6,4 +6,4 @@ export interface Storage {
   removeItem: (key: string) => Promise<void>;
 }
 
-export let storage: Storage = asyncStorage;
+export let storage: Storage = MMKVStorage;

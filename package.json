@@ -28,7 +28,8 @@
     "react-native-screens": "^3.20.0",
     "react-native-svg": "^13.9.0",
     "zod": "^3.21.4",
-    "zustand": "^5.0.6"
+    "zustand": "^5.0.6",
+    "react-native-mmkv": "^2.10.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

@@ -27,8 +27,10 @@ export function usePaginatedList<Data>(
 
   useEffect(() => {
     if (query.data) {
-      const newList = query.data.pages.flatMap(page => page.data);
-      setList(prevList => [...prevList, ...newList]);
+      const newList = query.data.pages.reduce<Data[]>((prev, curr) => {
+        return [...prev, ...curr.data];
+      }, []);
+      setList(newList);
     }
   }, [query.data]);
 
