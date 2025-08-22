@@ -42,19 +42,25 @@ export function SignUpScreen({}: AuthScreenProps<'SignUpScreen'>) {
     },
   });
 
-  const {control, formState, handleSubmit, watch} = useForm<SignUpSchema>({
-    resolver: zodResolver(signUpSchema),
-    defaultValues,
-    mode: 'onChange',
-  });
+  const {control, formState, handleSubmit, watch, getFieldState} =
+    useForm<SignUpSchema>({
+      resolver: zodResolver(signUpSchema),
+      defaultValues,
+      mode: 'onChange',
+    });
 
   function submitForm(formValues: SignUpSchema) {
     signUp(formValues);
   }
 
   const userName = watch('username');
+  const userNameState = getFieldState('username');
+  const userNameIsValid = !userNameState.invalid && userNameState.isDirty;
 
-  const userNameQuery = useAuthIsUserNameAvailable({username: userName});
+  const userNameQuery = useAuthIsUserNameAvailable({
+    username: userName,
+    enabled: userNameIsValid,
+  });
 
   return (
     <Screen canGoBack scrollable>
@@ -110,7 +116,7 @@ export function SignUpScreen({}: AuthScreenProps<'SignUpScreen'>) {
       />
 
       <Button
-        disabled={!formState.isValid}
+        disabled={!formState.isValid || userNameQuery.isFetching}
         onPress={handleSubmit(submitForm)}
         title="Criar uma conta"
         loading={isLoading}
