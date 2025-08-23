@@ -1,4 +1,4 @@
-import {useAuthIsUserNameAvailable} from '@domain';
+import {useAuthIsEmailAvailable, useAuthIsUserNameAvailable} from '@domain';
 import {UseFormGetFieldState, UseFormWatch} from 'react-hook-form';
 
 import {SignUpSchema} from './signUpSchema';
@@ -8,7 +8,16 @@ type Props = {
   getFieldState: UseFormGetFieldState<SignUpSchema>;
 };
 
-export function useAsyncValidation({watch, getFieldState}: Props) {
+type ReturnValues = {
+  errorMessage?: string;
+  notReady: boolean;
+  isFetching: boolean;
+};
+
+export function useAsyncValidation({watch, getFieldState}: Props): {
+  userNameValidation: ReturnValues;
+  emailValidation: ReturnValues;
+} {
   const userName = watch('username');
   const userNameState = getFieldState('username');
   const userNameIsValid = !userNameState.invalid && userNameState.isDirty;
@@ -18,11 +27,30 @@ export function useAsyncValidation({watch, getFieldState}: Props) {
     enabled: userNameIsValid,
   });
 
+  const email = watch('email');
+  const emailState = getFieldState('email');
+  const emailIsValid = !emailState.invalid && emailState.isDirty;
+
+  const emailQuery = useAuthIsEmailAvailable({
+    email,
+    enabled: emailIsValid,
+  });
+
   return {
-    errorMessage: userNameQuery.isUnavailable
-      ? 'Nome de usuário não disponível'
-      : undefined,
-    notReady: userNameQuery.isFetching || userNameQuery.isUnavailable,
-    isFetching: userNameQuery.isFetching,
+    userNameValidation: {
+      errorMessage: userNameQuery.isUnavailable
+        ? 'Nome de usuário não disponível'
+        : undefined,
+      notReady: userNameQuery.isFetching || userNameQuery.isUnavailable,
+      isFetching: userNameQuery.isFetching,
+    },
+
+    emailValidation: {
+      errorMessage: emailQuery.isUnavailable
+        ? 'E-mail não disponível'
+        : undefined,
+      notReady: emailQuery.isFetching || emailQuery.isUnavailable,
+      isFetching: emailQuery.isFetching,
+    },
   };
 }

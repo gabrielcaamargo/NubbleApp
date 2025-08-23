@@ -54,16 +54,10 @@ export function SignUpScreen({}: AuthScreenProps<'SignUpScreen'>) {
     signUp(formValues);
   }
 
-  const userNameValidation = useAsyncValidation({watch, getFieldState});
-
-  // const userName = watch('username');
-  // const userNameState = getFieldState('username');
-  // const userNameIsValid = !userNameState.invalid && userNameState.isDirty;
-
-  // const userNameQuery = useAuthIsUserNameAvailable({
-  //   username: userName,
-  //   enabled: userNameIsValid,
-  // });
+  const {userNameValidation, emailValidation} = useAsyncValidation({
+    watch,
+    getFieldState,
+  });
 
   return (
     <Screen canGoBack scrollable>
@@ -109,6 +103,12 @@ export function SignUpScreen({}: AuthScreenProps<'SignUpScreen'>) {
         label="E-mail"
         placeholder="Digite seu e-mail"
         boxProps={{mb: 's20'}}
+        errorMessage={emailValidation.errorMessage}
+        RightComponent={
+          emailValidation.isFetching ? (
+            <ActivityIndicator size="small" />
+          ) : undefined
+        }
       />
 
       <FormPasswordInput
@@ -120,7 +120,11 @@ export function SignUpScreen({}: AuthScreenProps<'SignUpScreen'>) {
       />
 
       <Button
-        disabled={!formState.isValid || userNameValidation.notReady}
+        disabled={
+          !formState.isValid ||
+          userNameValidation.notReady ||
+          emailValidation.notReady
+        }
         onPress={handleSubmit(submitForm)}
         title="Criar uma conta"
         loading={isLoading}
