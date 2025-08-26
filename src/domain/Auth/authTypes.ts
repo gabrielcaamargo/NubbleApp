@@ -3,6 +3,8 @@ import {User, UserAPI} from '../User';
 export interface AuthCredentials {
   token: string;
   user: User;
+  refreshToken: string;
+  tokenExpiresAt: string;
 }
 
 export interface FieldIsAvailableAPI {
@@ -16,6 +18,8 @@ export interface AuthCredentialsAPI {
     token: string; // 'NA.GCfDf81QRs0q4VxyFSEvWs8kZ-DoZnl5zKLn8UDY8ntedjZCPgxVxfFijlQy';
   };
   user: UserAPI;
+  refreshToken: string;
+  expires_at: string;
 }
 
 export interface SignInData {
