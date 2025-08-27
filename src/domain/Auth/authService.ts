@@ -68,4 +68,5 @@ export const authService = {
   authenticateByRefreshToken,
   updateToken,
   removeToken,
+  isRefreshTokenRequest: authApi.isRefreshTokenRequest,
 };
