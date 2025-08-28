@@ -1,8 +1,18 @@
-import {sub, formatISO} from 'date-fns';
+import {sub, formatISO, add, Duration} from 'date-fns';
 
 import {dateUtils} from '../dateUtils';
 
 const MOCKED_NOW = 1696573824333;
+
+function getDateISO(duration: Duration, operation?: 'sub' | 'add'): string {
+  operation = operation || 'sub';
+
+  const time =
+    operation === 'sub' ? sub(Date.now(), duration) : add(Date.now(), duration);
+  const timeISO = formatISO(time);
+
+  return dateUtils.formatRelative(timeISO);
+}
 
 describe('dateUtils', () => {
   describe('formatRelative', () => {
@@ -15,52 +25,35 @@ describe('dateUtils', () => {
     });
 
     it('should be displayed in seconds if less than 1 minute ago', () => {
-      const time = sub(Date.now(), {seconds: 30});
-      const timeISO = formatISO(time);
-
-      expect(dateUtils.formatRelative(timeISO)).toBe('30 s');
+      expect(getDateISO({seconds: 30})).toBe('30 s');
     });
-  });
 
-  it('should be displayed in minutes if less than 1 hour ago', () => {
-    const time = sub(Date.now(), {minutes: 30});
-    const timeISO = formatISO(time);
+    it('should be displayed in minutes if less than 1 hour ago', () => {
+      expect(getDateISO({minutes: 30})).toBe('30 m');
+    });
 
-    expect(dateUtils.formatRelative(timeISO)).toBe('30 m');
-  });
+    it('should be displayed in hours if less than 1 day ago', () => {
+      expect(getDateISO({hours: 5})).toBe('5 h');
+    });
 
-  it('should be displayed in hours if less than 1 day ago', () => {
-    const time = sub(Date.now(), {hours: 5});
-    const timeISO = formatISO(time);
+    it('should be displayed in days if less than 1 week ago', () => {
+      expect(getDateISO({days: 3})).toBe('3 d');
+    });
 
-    expect(dateUtils.formatRelative(timeISO)).toBe('5 h');
-  });
+    it('should be displayed in weeks if less than 1 month ago', () => {
+      expect(getDateISO({weeks: 3, hours: 2})).toBe('3 sem');
+    });
 
-  it('should be displayed in days if less than 1 week ago', () => {
-    const time = sub(Date.now(), {days: 3});
-    const timeISO = formatISO(time);
+    it('should be displayed in months if less than 1 year ago', () => {
+      expect(getDateISO({months: 6})).toBe('6 mes');
+    });
 
-    expect(dateUtils.formatRelative(timeISO)).toBe('3 d');
-  });
+    it('should be displayed in dd/MM/yyyy if more than 12 months ago', () => {
+      expect(getDateISO({months: 13})).toBe('06/09/2022');
+    });
 
-  it('should be displayed in weeks if less than 1 month ago', () => {
-    const time = sub(Date.now(), {weeks: 3, hours: 2});
-    const timeISO = formatISO(time);
-
-    expect(dateUtils.formatRelative(timeISO)).toBe('3 sem');
-  });
-
-  it('should be displayed in months if less than 1 year ago', () => {
-    const time = sub(Date.now(), {months: 6});
-    const timeISO = formatISO(time);
-
-    expect(dateUtils.formatRelative(timeISO)).toBe('6 mes');
-  });
-
-  it('should be displayed in dd/MM/yyyy if more than 12 months ago', () => {
-    const time = sub(Date.now(), {months: 13});
-    const timeISO = formatISO(time);
-
-    expect(dateUtils.formatRelative(timeISO)).toBe('06/09/2022');
+    it('should be displayed in dd/MM/yyyy in future date', () => {
+      expect(getDateISO({days: 2}, 'add')).toBe('08/10/2023');
+    });
   });
 });
