@@ -24,14 +24,20 @@ function formatRelative(dateISO: string) {
 
   const diffInDays = Math.floor(diffInHours / 24);
 
-  if (diffInDays < 30) {
+  if (diffInDays < 7) {
     return `${diffInDays} d`;
+  }
+
+  const diffInWeeks = Math.floor(diffInDays / 7);
+
+  if (diffInWeeks < 4) {
+    return `${diffInWeeks} sem`;
   }
 
   const diffInMonths = Math.floor(diffInDays / 30);
 
   if (diffInMonths < 12) {
-    return `${diffInMonths} m`;
+    return `${diffInMonths} mes`;
   }
 
   return format(date, 'dd/MM/yyyy');
