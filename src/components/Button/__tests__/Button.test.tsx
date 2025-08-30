@@ -1,19 +1,38 @@
 import React from 'react';
 
-import {fireEvent, render} from 'test-utils';
+import {fireEvent, render, screen} from 'test-utils';
 
-import {Button} from '../Button';
+import {Button, ButtonProps} from '../Button';
+
+function renderComponent(props?: Partial<ButtonProps>) {
+  render(<Button title="Button Title" {...props} />);
+
+  const titleElement = screen.getByText(/Button title/i);
+
+  return {titleElement};
+}
 
 describe('<Button />', () => {
   it('calls the onPress function when it is pressed', () => {
     const mockedOnPress = jest.fn();
-    const {getByText} = render(
-      <Button title="Button Title" onPress={mockedOnPress} />,
-    );
 
-    const titleElement = getByText(/Button title/i);
+    const {titleElement} = renderComponent({onPress: mockedOnPress});
+
     fireEvent.press(titleElement);
 
     expect(mockedOnPress).toHaveBeenCalled();
+  });
+
+  it('doesnt call the onPress function when it is disabled and it is pressed', () => {
+    const mockedOnPress = jest.fn();
+
+    const {titleElement} = renderComponent({
+      onPress: mockedOnPress,
+      disabled: true,
+    });
+
+    fireEvent.press(titleElement);
+
+    expect(mockedOnPress).not.toHaveBeenCalled();
   });
 });
