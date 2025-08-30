@@ -29,7 +29,7 @@ describe('<Button />', () => {
     expect(mockedOnPress).toHaveBeenCalled();
   });
 
-  it('doesnt call the onPress function when it is disabled and it is pressed', () => {
+  it('does not call the onPress function when it is disabled and it is pressed', () => {
     const mockedOnPress = jest.fn();
 
     const {titleElement} = renderComponent({
