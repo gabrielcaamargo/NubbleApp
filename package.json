@@ -8,6 +8,7 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
+    "coverage": "jest --verbose --coverage",
     "prepare": "husky install",
     "art:3333": "adb reverse tcp:3333 tcp:3333"
   },
@@ -67,6 +68,7 @@
     "setupFilesAfterEnv": [
       "@testing-library/jest-native/extend-expect"
     ],
-    "moduleDirectories": ["node_modules", "./src/test"]
+    "moduleDirectories": ["node_modules", "./src/test"],
+    "modulePathIgnorePatterns": [".*/mockedData/.*"]
   }
 }
