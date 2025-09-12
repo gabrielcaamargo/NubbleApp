@@ -63,7 +63,7 @@
       "index"
     ],
     "collectCoverageFrom": [
-      "src/{components,utils,hooks}/**/*.{ts,js,tsx,jsx}"
+      "src/{components,utils,hooks,domain}/**/*.{ts,js,tsx,jsx}"
     ],
     "setupFilesAfterEnv": [
       "@testing-library/jest-native/extend-expect"
