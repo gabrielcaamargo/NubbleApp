@@ -10,7 +10,7 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 describe('integration: PostCommentScreen', () => {
-  it('should render screen', async () => {
+  it('When ADDING a comment the list is automatically updated', async () => {
     renderScreen(
       <PostCommentScreen
         navigation={{} as any}
