@@ -11,7 +11,7 @@ import {AppScreenProps} from '@routes';
 import {
   PostCommentBottom,
   PostCommentItem,
-  PostTextMessage,
+  PostCommentTextMessage,
 } from './components';
 
 export function PostCommentScreen({
@@ -19,41 +19,39 @@ export function PostCommentScreen({
 }: AppScreenProps<'PostCommentScreen'>) {
   const postId = route.params.postId;
   const postAuthorId = route.params.postAuthorId;
-  const {userId} = useAuthCredentials();
-
   const {list, fetchNextPage, hasNextPage} = usePostCommentList(postId);
+
+  const {userId} = useAuthCredentials();
 
   const {bottom} = useAppSafeArea();
 
   function renderItem({item}: ListRenderItemInfo<PostComment>) {
     return (
       <PostCommentItem
+        postId={postId}
         postComment={item}
         userId={userId}
         postAuthorId={postAuthorId}
-        postId={postId}
       />
     );
   }
 
   return (
-    <Screen canGoBack title="Comentários" flex={1}>
-      <Box justifyContent="space-between" flex={1}>
+    <Screen flex={1} title="Comentários" canGoBack>
+      <Box flex={1} justifyContent="space-between">
         <FlatList
+          showsVerticalScrollIndicator={false}
           data={list}
           renderItem={renderItem}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={item => item.id.toString()}
           contentContainerStyle={{paddingBottom: bottom}}
           ListFooterComponent={
             <PostCommentBottom
-              fetchNextPage={fetchNextPage}
               hasNextPage={hasNextPage}
+              fetchNextPage={fetchNextPage}
             />
           }
         />
-
-        <PostTextMessage postId={postId} />
+        <PostCommentTextMessage postId={postId} />
       </Box>
     </Screen>
   );

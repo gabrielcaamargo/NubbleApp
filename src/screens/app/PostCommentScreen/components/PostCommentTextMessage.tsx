@@ -9,7 +9,7 @@ interface PostTextMessageProps {
   postId: number;
 }
 
-export function PostTextMessage({postId}: PostTextMessageProps) {
+export function PostCommentTextMessage({postId}: PostTextMessageProps) {
   const {createComment} = usePostCommentCreate(postId, {
     onSuccess: () => {
       setMessage('');
