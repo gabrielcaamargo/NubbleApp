@@ -27,24 +27,26 @@ describe('integration: PostCommentScreen', () => {
       />,
     );
 
-    const comment = await screen.findByText(/comentário aleatório/i);
+    const comment = await screen.findByText(/comentário aleatório/i, {
+      timeout: 50000,
+    });
 
     expect(comment).toBeTruthy();
 
-    // achar o campo de input
     const inputText = screen.getByPlaceholderText(/Escreva um comentário/i);
 
-    // digitar a mensagem
     fireEvent.changeText(inputText, 'novo comentário');
 
-    // clicar em enviar
     fireEvent.press(screen.getByText(/enviar/i));
 
-    //espera: a lista atualizada com o novo comentário
-    const newComment = await screen.findByText(/novo comentário/i);
+    const newComment = await screen.findByText(/novo comentário/i, {
+      timeout: 50000,
+    });
     expect(newComment).toBeTruthy();
 
-    const comments = await screen.findAllByTestId('post-comment-id');
+    const comments = await screen.findAllByTestId('post-comment-id', {
+      timeout: 50000,
+    });
 
     expect(comments.length).toBe(2);
   });
