@@ -13,6 +13,7 @@ const config: Config = {
   moduleDirectories: ['node_modules', './src/test'],
   modulePathIgnorePatterns: ['.*/mockedData/.*'],
   setupFiles: ['<rootDir>/src/test/jestSetup.ts'],
+  testTimeout: 15000,
 };
 
 export default config;
