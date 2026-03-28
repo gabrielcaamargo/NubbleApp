@@ -1,15 +1,20 @@
 import React, {useState} from 'react';
+import {FlatList, ListRenderItemInfo} from 'react-native';
 
-import {useUserSearch} from '@domain';
+import {User, useUserSearch} from '@domain';
 
-import {Icon, Screen, Text, TextInput} from '@components';
+import {Icon, ProfileUser, Screen, TextInput} from '@components';
 import {useDebounce} from '@hooks';
 
 export function SearchScreen() {
   const [search, setSearch] = useState('');
   const debouncedSearch = useDebounce(search);
 
-  const {} = useUserSearch(debouncedSearch);
+  const {list} = useUserSearch(debouncedSearch);
+
+  function renderItem({item}: ListRenderItemInfo<User>) {
+    return <ProfileUser user={item} />;
+  }
 
   return (
     <Screen
@@ -22,7 +27,11 @@ export function SearchScreen() {
           placeholder="Digite sua busca"
         />
       }>
-      <Text>Search</Text>
+      <FlatList
+        data={list}
+        renderItem={renderItem}
+        keyExtractor={item => item.id.toString()}
+      />
     </Screen>
   );
 }
