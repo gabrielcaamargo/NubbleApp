@@ -7,9 +7,14 @@ import {SearchHistoryService} from './searchHistoryType';
 
 const useSearchHistoryStore = create<SearchHistoryService>()(
   persist(
-    set => ({
+    (set, get) => ({
       userList: [],
-      addUser: user => set(state => ({userList: [...state.userList, user]})),
+      addUser: user => {
+        const userExist = get().userList.find(u => u.id === user.id);
+        if (!userExist) {
+          set(state => ({userList: [...state.userList, user]}));
+        }
+      },
       removeUser: userId =>
         set(state => ({
           userList: state.userList.filter(user => user.id !== userId),

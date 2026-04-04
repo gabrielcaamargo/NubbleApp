@@ -5,19 +5,25 @@ import {User} from '@domain';
 import {useNavigation} from '@react-navigation/native';
 
 import {
+  Box,
   PressableBox,
   PressableBoxProps,
   ProfileAvatar,
+  ProfileAvatarProps,
   Text,
 } from '@components';
 
 type ProfileUserProps = {
   user: Pick<User, 'username' | 'profileUrl' | 'id'>;
+  avatarProps?: Omit<ProfileAvatarProps, 'imageURL'>;
+  RightComponent?: React.ReactElement;
 } & PressableBoxProps;
 
 export function ProfileUser({
   user,
   onPress,
+  avatarProps,
+  RightComponent,
   ...pressableBoxProps
 }: ProfileUserProps) {
   const navigation = useNavigation();
@@ -26,6 +32,7 @@ export function ProfileUser({
     if (onPress) {
       onPress(event);
     }
+
     navigation.navigate('ProfileScreen', {userId: user.id});
   }
 
@@ -34,12 +41,16 @@ export function ProfileUser({
       flexDirection="row"
       alignItems="center"
       mb="s16"
+      justifyContent="space-between"
       onPress={handleOnPress}
       {...pressableBoxProps}>
-      <ProfileAvatar imageURL={user.profileUrl} />
-      <Text ml="s12" semiBold preset="paragraphMedium">
-        {user.username}
-      </Text>
+      <Box flexDirection="row" alignItems="center">
+        <ProfileAvatar {...avatarProps} imageURL={user.profileUrl} />
+        <Text ml="s12" semiBold preset="paragraphMedium">
+          {user.username}
+        </Text>
+      </Box>
+      {RightComponent}
     </PressableBox>
   );
 }

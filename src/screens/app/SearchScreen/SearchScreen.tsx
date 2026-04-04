@@ -16,7 +16,13 @@ export function SearchScreen() {
   const {list} = useUserSearch(debouncedSearch);
 
   function renderItem({item}: ListRenderItemInfo<User>) {
-    return <ProfileUser user={item} onPress={() => addUser(item)} />;
+    return (
+      <ProfileUser
+        user={item}
+        onPress={() => addUser(item)}
+        avatarProps={{size: 48}}
+      />
+    );
   }
 
   return (
@@ -39,12 +45,6 @@ export function SearchScreen() {
           keyExtractor={item => item.id.toString()}
         />
       )}
-
-      <FlatList
-        data={list}
-        renderItem={renderItem}
-        keyExtractor={item => item.id.toString()}
-      />
     </Screen>
   );
 }
