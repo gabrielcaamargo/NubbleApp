@@ -2,7 +2,12 @@ import React from 'react';
 import {Alert, AlertButton} from 'react-native';
 
 import {authCredentialsStorage} from '@service';
-import {mockedPostComment, resetInMemoryResponse, server} from '@test';
+import {
+  mockedPostComment,
+  mockUtils,
+  resetInMemoryResponse,
+  server,
+} from '@test';
 import {
   act,
   fireEvent,
@@ -67,7 +72,7 @@ describe('integration: PostCommentScreen', () => {
   test('When DELETING a comment the list is automatically updated', async () => {
     jest
       .spyOn(authCredentialsStorage, 'get')
-      .mockResolvedValue(mockedPostComment.mateusAuthCredentials);
+      .mockResolvedValue(mockUtils.mateusAuthCredentials);
 
     let mockedConfirm: AlertButton['onPress'];
     const mockedAlert = jest
